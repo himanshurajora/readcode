@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/services/prisma.service';
 
@@ -56,5 +56,28 @@ export class UserService {
   async getUserByUsername(username: string) {
     const { id } = await this.findIdByUsername(username);
     return await this.getUserDetails(id);
+  }
+
+  async loginUser(loginData: Prisma.UserCreateInput) {
+    // find user by username or email
+    const user = await this.prisma.user.findFirst({
+      where: {
+        OR: [{ username: loginData.username }, { email: loginData.email }],
+        password: loginData.password,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        username: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    if (!user) {
+      // wrong credentials
+      throw new NotFoundException('User Not Found, with email or username');
+    }
+    return user;
   }
 }
