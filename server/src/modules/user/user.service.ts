@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/services/prisma.service';
-
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private jwt: JwtService) {}
 
   async getUserDetails(id: number) {
     return await this.prisma.user.findFirst({
@@ -43,9 +43,11 @@ export class UserService {
     });
   }
 
-  async createUser(user: Prisma.UserCreateInput) {
-    return await this.prisma.user.create({
-      data: user,
+  async findUserById(id: number) {
+    return await this.prisma.user.findFirst({
+      where: {
+        id,
+      },
     });
   }
 
@@ -58,7 +60,13 @@ export class UserService {
     return await this.getUserDetails(id);
   }
 
-  async loginUser(loginData: Prisma.UserCreateInput) {
+  async addUser(user: Prisma.UserCreateInput) {
+    return await this.prisma.user.create({
+      data: user,
+    });
+  }
+
+  async findOne(loginData: IUserLoginCredentials) {
     // find user by username or email
     const user = await this.prisma.user.findFirst({
       where: {
@@ -74,6 +82,7 @@ export class UserService {
         updatedAt: true,
       },
     });
+    // TODO: Later Convert it to local strategy
     if (!user) {
       // wrong credentials
       throw new NotFoundException('User Not Found, with email or username');
