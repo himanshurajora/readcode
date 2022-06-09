@@ -16,3 +16,4 @@ export const PROJECT_CONTROLLER_ROUTE = 'project';
 export const PROJECT_CREATE_ROUTE = 'create';
 export const PROJECT_GET_ALL_ROUTE = 'all';
 export const PROJECT_GET_BY_QUERY_ROUTE = 'query';
+export const PROJECT_GET_BY_ID = 'id';
