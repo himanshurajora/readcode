@@ -1,0 +1,30 @@
+<div class="project-cards">
+  <div class="project-card" *ngFor="let project of projects">
+    <div class="title"> {{ project.title }} </div>
+    <div class="description">
+      {{ project.description }}
+    </div>
+    <mat-chip-list class="tags">
+      <mat-chip class="tag-name" *ngFor="let tag of project.tags">
+        {{ tag.name }}
+      </mat-chip>
+    </mat-chip-list>
+    <div class="count-section" id="view-count">
+      <mat-icon>visibility</mat-icon> Views :
+      <span class="view-count-value"> {{ project.views }} </span>
+    </div>
+    <div class="count-section" id="stars-count">
+      <mat-icon>star</mat-icon> Stars :
+      <span class="stars-count-value"> {{ 0 }} </span>
+    </div>
+    <div class="button-group">
+      <a
+        mat-flat-button
+        class="view-button"
+        href="{{ project.link }}"
+      >
+        View
+      </a>
+    </div>
+  </div>
+</div>

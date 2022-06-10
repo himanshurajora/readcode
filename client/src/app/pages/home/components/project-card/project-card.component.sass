@@ -1,0 +1,45 @@
+.project-cards
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-evenly
+    gap: 20px
+    .project-card
+        display: flex
+        flex-direction: column
+        max-width: min(300px, 100vw)
+        min-width: 300px
+        row-gap: 10px
+        background-color: #eeeeee
+        padding: 20px 10px
+        border-radius: 10px
+
+        .tag-name
+            // font-size: 12px
+            color: white
+            background-color: #ffaa00
+            border-radius: 5px
+
+        .title
+            font-size: 22px
+            color: black
+            font-weight: bolder
+
+        .description
+            font-size: 14px
+            color: #777777
+        .count-section
+            display: flex
+            align-items: center
+            font-size: 20px
+            color: black
+            column-gap: 5px
+            font-weight: bolder
+        .button-group
+            display: flex
+            flex-direction: row
+            align-items: center
+            column-gap: 20px
+            .view-button
+                background-color: #142141
+                color: white
