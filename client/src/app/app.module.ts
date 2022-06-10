@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { HomeComponent } from './pages/home/home.component';
 import { ProjectCardComponent } from './pages/home/components/project-card/project-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProjectCardComponent } from './pages/home/components/project-card/proje
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

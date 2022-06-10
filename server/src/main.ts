@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
-
+  app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(3333);
 }
