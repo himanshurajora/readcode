@@ -23,3 +23,8 @@ export interface IProject {
   tags: ITag[];
   user: IUser;
 }
+
+export interface IUserLoginCredentials {
+  username: string;
+  password: string;
+}

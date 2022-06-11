@@ -20,7 +20,7 @@ export class AuthService {
       throw new ForbiddenException('Invalid credentials');
     }
 
-    return await this.generateToken(userData);
+    return { token: await this.generateToken(userData) };
   }
 
   async createUser(user: Prisma.UserCreateInput) {

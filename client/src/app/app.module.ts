@@ -9,6 +9,8 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './pages/home/home.component';
 import { ProjectCardComponent } from './pages/home/components/project-card/project-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     HomeComponent,
     ProjectCardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
