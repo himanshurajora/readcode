@@ -43,4 +43,10 @@ export class ProjectController {
   async getProjectByID(@Param('id') id: number) {
     return await this.projectService.getProjectById(id);
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('all/my')
+  async getAllMyProjects(@Request() req: any) {
+    return await this.projectService.getProjectsByUserId(req.user.id);
+  }
 }

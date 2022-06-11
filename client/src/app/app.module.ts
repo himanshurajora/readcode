@@ -11,6 +11,12 @@ import { ProjectCardComponent } from './pages/home/components/project-card/proje
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from 'src/core/auth/auth.service';
+import { AuthGuardService } from 'src/core/auth/auth-guard.service';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { AddProjectDialogComponent } from './pages/projects/components/add-project-dialog/add-project-dialog.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +25,9 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     ProjectCardComponent,
     LoginComponent,
+    ProjectsComponent,
+    AddProjectDialogComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,8 +36,15 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('access_token'),
+        allowedDomains: ['localhost:4200'],
+        disallowedRoutes: ['http://localhost:4200/login'],
+      },
+    }),
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

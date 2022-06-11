@@ -1,12 +1,27 @@
 <h1>Login</h1>
 
-<form #loginForm="ngForm" (ngSubmit)="Login(loginForm.value)">
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
   <mat-form-field>
-    <input matInput placeholder="Username" ngModel name="username" />
+    <input
+      matInput
+      required
+      placeholder="Username"
+      ngModel
+      name="username"
+    />
   </mat-form-field>
   <br />
   <mat-form-field>
-    <input matInput placeholder="Password" ngModel name="password" />
+    <input
+      matInput
+      required
+      placeholder="Password"
+      ngModel
+      name="password"
+    />
   </mat-form-field>
+  <br />
   <button type="submit" mat-raised-button>Login</button>
 </form>
+<br />
+<a routerLink="/register"> Register Here </a>

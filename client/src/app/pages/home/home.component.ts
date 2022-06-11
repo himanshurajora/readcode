@@ -15,4 +15,17 @@ export class HomeComponent implements OnInit {
       this.projects = data as IProject[];
     });
   }
+
+  onSearch(event: any): void {
+    let search = event.target.value.trim();
+    if (search.length > 0) {
+      this.apiService.getProjectsByQuery(search).subscribe((data) => {
+        this.projects = data as IProject[];
+      });
+    } else {
+      this.apiService.getProjects().subscribe((data) => {
+        this.projects = data as IProject[];
+      });
+    }
+  }
 }

@@ -1,8 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { prisma, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/services/prisma.service';
-import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +19,17 @@ export class AuthService {
       throw new ForbiddenException('Invalid credentials');
     }
 
-    return { token: await this.generateToken(userData) };
+    return {
+      ...{
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        username: userData.username,
+        createdAt: userData.createdAt,
+        updatedAt: userData.updatedAt,
+      },
+      token: await this.generateToken(userData),
+    };
   }
 
   async createUser(user: Prisma.UserCreateInput) {

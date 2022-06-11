@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
   imports: [
     JwtModule.register({
       secret: 'the-secret-key',
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '1s' },
     }),
   ],
   controllers: [AuthController],

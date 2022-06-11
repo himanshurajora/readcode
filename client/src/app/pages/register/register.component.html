@@ -1,0 +1,42 @@
+<!-- Register page -->
+<h1>Register</h1>
+
+<form #loginForm="ngForm" (ngSubmit)="register(loginForm.value)">
+  <mat-form-field>
+    <input matInput required placeholder="Name" ngModel name="name" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Username"
+      ngModel
+      name="username"
+    />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Password"
+      ngModel
+      name="password"
+    />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Email"
+      ngModel
+      name="email"
+    />
+  </mat-form-field>
+  <br />
+  <button type="submit" mat-raised-button>Register</button>
+</form>
+<br />
+<a routerLink="/login"> Login Here </a>

@@ -31,6 +31,7 @@ export class ProjectService {
         tags: true,
         user: true,
       },
+      take: 200,
     });
   }
 
@@ -88,7 +89,20 @@ export class ProjectService {
               mode: 'insensitive',
             },
           },
+          {
+            tags: {
+              some: {
+                name: {
+                  contains: query,
+                },
+              },
+            },
+          },
         ],
+      },
+      include: {
+        tags: true,
+        user: true,
       },
     });
   }
